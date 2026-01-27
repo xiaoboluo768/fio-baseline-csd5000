@@ -76,7 +76,7 @@ function start_monitor()
     drv_log=${drv_info}/${disk}_monitor.log
     (while true; do
         echo "`date`" >> "$drv_log"
-        if ! sfx-status >> "$drv_log"; then
+        if ! sfx-status /dev/${disk} >> "$drv_log"; then
             print_log "[Warning] monitor process starts failed, please check sfx-status!"
             exit 1
         fi

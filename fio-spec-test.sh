@@ -196,7 +196,7 @@ function Run_test(){
 
     #Seq read 
     mode="perf";rw="read";bs=128k;job=1;qd=128;rwmixread=0;
-    print_log "[${disk}] ${mode} ${bs} ${job}job ${qd}qd Start" 
+    print_log "[${disk}] ${mode} ${rw} ${bs} ${job}job ${qd}qd Start" 
     iostat -xmdct $disk 1 > ${iostat_dir}/${disk}_iostat_${mode}_${rw}_${bs}_${job}job_QD${qd}.log &
     iostat_pid=$!;disown "$iostat_pid" 
     sudo fio --percentile_list=10:20:30:40:50:60:70:80:90:99:99.9:99.99:99.999:99.9999:99.99999:99.999999:99.9999999 --ioengine=libaio --direct=1 --norandommap \
